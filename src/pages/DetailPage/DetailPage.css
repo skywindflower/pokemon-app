@@ -1,0 +1,17 @@
+.title-arrow {
+  color: black;
+}
+
+.w-h-icon {
+  color: white;
+  margin: 3px;
+}
+
+.arrow {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  width: 8%;
+  height: 8%;
+  font-size: 3rem;
+}
