@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Card from '../../components/PokeCard.jsx';
 import LoadingPage from '../LoadingPage/index.jsx';
 import './MainPage.css';
+import PokeCardList from '../../components/PokeCardList.jsx';
 
 const MainPage = ({ allPokemon }) => {
-  const navigate = useNavigate();
   const [offset, setOffset] = useState(0);
   const [displayPokemon, setDisplayPokemon] = useState([]);
 
@@ -25,20 +23,7 @@ const MainPage = ({ allPokemon }) => {
     <div className='main-container'>
       {displayPokemon.length ? (
         <div className='main-pokemon-list-container'>
-          <div className='main-pokemon-list'>
-            {displayPokemon.map((pokemon) => {
-              return (
-                <div
-                  key={pokemon.name}
-                  onClick={() =>
-                    navigate(`/${pokemon.id}`, { state: { url: pokemon.url } })
-                  }
-                >
-                  <Card key={pokemon.name} url={pokemon.url} />
-                </div>
-              );
-            })}
-          </div>
+          <PokeCardList displayPokemon={displayPokemon} />
           <button
             className='pokemon-add-btn'
             onClick={() => getDisplayPokemonData(allPokemon)}

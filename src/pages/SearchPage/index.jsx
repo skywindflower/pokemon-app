@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Card from '../../components/PokeCard.jsx';
+import { useLocation } from 'react-router-dom';
 import './SearchPage.css';
+import PokeCardList from '../../components/PokeCardList.jsx';
 
 const SearchPage = ({ allPokemon }) => {
-  const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState([]);
 
   const query = new URLSearchParams(useLocation().search);
@@ -39,21 +38,7 @@ const SearchPage = ({ allPokemon }) => {
   return (
     <section className='search-page-container'>
       {searchResults.length > 0 ? (
-        <div className='main-pokemon-list'>
-          {searchResults.map((result) => {
-            console.log(result.id);
-            return (
-              <div
-                key={result.id}
-                onClick={() =>
-                  navigate(`/${result.id}`, { state: { url: result.url } })
-                }
-              >
-                <Card url={result.url} />
-              </div>
-            );
-          })}
-        </div>
+        <PokeCardList displayPokemon={searchResults} />
       ) : (
         <div>
           <p>찾고자하는 검색어 "{searchText}" 에 맞는 포켓몬이 없습니다.</p>
